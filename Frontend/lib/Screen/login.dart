@@ -1,5 +1,4 @@
 import 'package:covid19elevate/Bloc/userBloc.dart';
-import 'package:covid19elevate/Screen/home.dart';
 import 'package:covid19elevate/Screen/register.dart';
 import 'package:covid19elevate/Screen/splashScreen.dart';
 import 'package:flutter/material.dart';

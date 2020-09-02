@@ -6,6 +6,7 @@ import 'package:covid19elevate/const.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserBloc extends Bloc {
   User _user;
@@ -26,6 +27,7 @@ class UserBloc extends Bloc {
   Future<void> _mapEventToStream(UserEvent event) async {}
 
   Future<bool> loginUser(String email, String password) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     bool status;
     Map<String, String> header = {
       "Content-type": "application/json",
@@ -38,6 +40,7 @@ class UserBloc extends Bloc {
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body)["data"];
       _user = User.fromMap(map);
+      await prefs.setString('id', _user.id);
       status = true;
     } else {
       Fluttertoast.showToast(msg: "Wrong Email or Password");
@@ -47,6 +50,7 @@ class UserBloc extends Bloc {
   }
 
   Future<bool> registerUser(String password, String name, String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     bool status;
     Map<String, String> header = {
       "Content-type": "application/json",
@@ -59,6 +63,7 @@ class UserBloc extends Bloc {
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body)["data"];
       _user = User.fromMap(map);
+      await prefs.setString('id', _user.id);
       status = true;
     } else {
       status = false;

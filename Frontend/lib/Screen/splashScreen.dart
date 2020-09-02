@@ -9,8 +9,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     StatsBloc _statBloc = BlocProvider.of<StatsBloc>(context);
     _statBloc.statsEventSink.add(GetInitialData());
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Home()));
-    return Container();
+    Future.delayed(const Duration(seconds: 1), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Home()));
+    });
+    return Scaffold(body: Container());
   }
 }

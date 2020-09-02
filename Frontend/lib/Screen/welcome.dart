@@ -1,7 +1,9 @@
 import 'package:covid19elevate/Screen/login.dart';
 import 'package:covid19elevate/Screen/register.dart';
+import 'package:covid19elevate/Screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Welcome extends StatefulWidget {
   @override
@@ -9,6 +11,20 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  bool isLoading = true;
+  checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // print(prefs.getString('id').toString());
+    setState(() {
+      isLoading = false;
+    });
+    print(prefs.getString('id'));
+    if (prefs.getString('id') != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (ctx) => SplashScreen()));
+    }
+  }
+
   Widget _submitButton() {
     return InkWell(
       onTap: () {
@@ -75,42 +91,52 @@ class _WelcomeState extends State<Welcome> {
   }
 
   @override
+  void initState() {
+    checkLogin();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
-              ],
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xfffbb448), Color(0xffe46b10)])),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _title(),
-              SizedBox(
-                height: 80,
+      body: isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: Colors.grey.shade200,
+                          offset: Offset(2, 4),
+                          blurRadius: 5,
+                          spreadRadius: 2)
+                    ],
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xfffbb448), Color(0xffe46b10)])),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _title(),
+                    SizedBox(
+                      height: 80,
+                    ),
+                    _submitButton(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _signUpButton(),
+                  ],
+                ),
               ),
-              _submitButton(),
-              SizedBox(
-                height: 20,
-              ),
-              _signUpButton(),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
