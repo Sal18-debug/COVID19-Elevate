@@ -105,7 +105,7 @@ class _LoginState extends State<Login> {
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+                colors: [Colors.blueAccent, Colors.blue])),
         child: Text(
           'Login',
           style: TextStyle(fontSize: 20, color: Colors.white),
@@ -129,7 +129,7 @@ class _LoginState extends State<Login> {
           children: <Widget>[
             Text(
               'Don\'t have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               width: 10,
@@ -137,8 +137,8 @@ class _LoginState extends State<Login> {
             Text(
               'Register',
               style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
+                  color: Colors.blue,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
           ],
@@ -156,7 +156,7 @@ class _LoginState extends State<Login> {
           textStyle: Theme.of(context).textTheme.headline4,
           fontSize: 30,
           fontWeight: FontWeight.w700,
-          color: Color(0xffe46b10),
+          color: Colors.blue,
         ),
       ),
     );

@@ -36,6 +36,7 @@ dependencies:
   shimmer_animation: ^0.1.1+1
   shared_preferences: ^0.5.10
   fluttertoast: ^7.0.4
+  url_launcher: ^5.5.2
 
 dev_dependencies:
   flutter_test:

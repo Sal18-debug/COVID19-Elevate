@@ -39,7 +39,7 @@ class _WelcomeState extends State<Welcome> {
             borderRadius: BorderRadius.all(Radius.circular(5)),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                  color: Color(0xffdf8e33).withAlpha(100),
+                  color: Colors.blue.withAlpha(100),
                   offset: Offset(2, 4),
                   blurRadius: 8,
                   spreadRadius: 2)
@@ -47,7 +47,7 @@ class _WelcomeState extends State<Welcome> {
             color: Colors.white),
         child: Text(
           'Login',
-          style: TextStyle(fontSize: 20, color: Color(0xfff7892b)),
+          style: TextStyle(fontSize: 20, color: Colors.blue),
         ),
       ),
     );
@@ -119,7 +119,7 @@ class _WelcomeState extends State<Welcome> {
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Color(0xfffbb448), Color(0xffe46b10)])),
+                        colors: [Colors.blueAccent, Colors.blue])),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

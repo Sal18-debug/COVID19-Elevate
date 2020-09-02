@@ -1,10 +1,8 @@
-import 'package:covid19elevate/Bloc/StatsBloc.dart';
-import 'package:covid19elevate/Bloc/StatsEvent.dart';
 import 'package:covid19elevate/Screen/countryStats.dart';
+import 'package:covid19elevate/Screen/events.dart';
 import 'package:covid19elevate/Screen/globalStats.dart';
 import 'package:covid19elevate/Screen/quiz.dart';
 import 'package:flutter/material.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -18,6 +16,7 @@ class _HomeState extends State<Home> {
   static List _screens = [
     GlobalStats(),
     CountryStats(),
+    Events(),
     Quiz(),
   ];
 
@@ -50,6 +49,10 @@ class _HomeState extends State<Home> {
                     text: 'Stats',
                   ),
                   GButton(
+                    icon: LineIcons.group,
+                    text: 'Events',
+                  ),
+                  GButton(
                     icon: LineIcons.question,
                     text: 'Quiz',
                   ),
@@ -72,6 +75,8 @@ class _HomeState extends State<Home> {
     } else if (selectedIndex == 1) {
       CountryStats();
     } else if (selectedIndex == 2) {
+      Events();
+    } else if (selectedIndex == 3) {
       Quiz();
     }
   }

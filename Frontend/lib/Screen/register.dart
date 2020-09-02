@@ -1,5 +1,4 @@
 import 'package:covid19elevate/Bloc/userBloc.dart';
-import 'package:covid19elevate/Screen/home.dart';
 import 'package:covid19elevate/Screen/login.dart';
 import 'package:covid19elevate/Screen/splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -109,7 +108,7 @@ class _RegisterState extends State<Register> {
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+                colors: [Colors.blueAccent, Colors.blue])),
         child: Text(
           'Register Now',
           style: TextStyle(fontSize: 20, color: Colors.white),
@@ -133,7 +132,7 @@ class _RegisterState extends State<Register> {
           children: <Widget>[
             Text(
               'Already have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               width: 10,
@@ -141,8 +140,8 @@ class _RegisterState extends State<Register> {
             Text(
               'Login',
               style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
+                  color: Colors.blue,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
           ],
@@ -157,11 +156,10 @@ class _RegisterState extends State<Register> {
       text: TextSpan(
         text: 'Covid19 Elevate',
         style: GoogleFonts.portLligatSans(
-          textStyle: Theme.of(context).textTheme.headline4,
-          fontSize: 30,
-          fontWeight: FontWeight.w700,
-          color: Color(0xffe46b10),
-        ),
+            textStyle: Theme.of(context).textTheme.headline4,
+            fontSize: 30,
+            fontWeight: FontWeight.w700,
+            color: Colors.blue),
       ),
     );
   }
