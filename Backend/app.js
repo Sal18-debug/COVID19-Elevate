@@ -8,7 +8,8 @@ const compression = require('compression');
 const mongoSanitize = require('express-mongo-sanitize');
 
 //Import Routes
-const admin = require('./routers/adminRouter');
+const userRouter = require('./routers/userRouter');
+//const quizeRouter = require('./routers/quizeRouter');
 
 const app = express();
 
@@ -18,9 +19,6 @@ app.enable('trust proxy');
 //Implement cors
 app.use(cors());
 app.options('*', cors());
-
-// Serving static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 //set security HTTPS headers
 app.use(helmet());
@@ -42,7 +40,7 @@ app.use(compression());
 app.use(morgan('dev'));
 
 // ROUTES
-app.use('/api/v1/admin', adminRouter);
+app.use('/api/v1/user', userRouter);
 //app.use('/api/v1/quize', quizeRouter);
 
 //Handling unexpected routes
