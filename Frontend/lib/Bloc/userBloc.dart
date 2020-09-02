@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:covid19elevate/Bloc/userEvent.dart';
 import 'package:covid19elevate/Model/user.dart';
 import 'package:covid19elevate/const.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,16 +14,6 @@ class UserBloc extends Bloc {
   StreamController<User> _userController = StreamController<User>.broadcast();
   StreamSink<User> get userESink => _userController.sink;
   Stream<User> get userStream => _userController.stream;
-
-  StreamController<UserEvent> _userEventController =
-      StreamController<UserEvent>.broadcast();
-  StreamSink<UserEvent> get userEventSink => _userEventController.sink;
-  Stream<UserEvent> get userEventStream => _userEventController.stream;
-
-  UserBloc() {
-    userEventStream.listen(_mapEventToStream);
-  }
-  Future<void> _mapEventToStream(UserEvent event) async {}
 
   Future<bool> loginUser(String email, String password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -75,6 +64,5 @@ class UserBloc extends Bloc {
   @override
   void dispose() {
     _userController.close();
-    _userEventController.close();
   }
 }
