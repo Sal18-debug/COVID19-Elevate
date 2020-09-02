@@ -1,3 +1,4 @@
+import 'package:covid19elevate/const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -9,30 +10,6 @@ class Events extends StatefulWidget {
 }
 
 class _EventsState extends State<Events> {
-  List<String> list = [
-    "My Piggy for School",
-    "Kids Zone",
-    "Adult Zone",
-    "Senior Citizen Zone",
-    "Meet Up Groups",
-    "COVID19 Tips and Resource"
-  ];
-  List<String> link = [
-    "https://www.helpteaching.com/free-printable-worksheets.html",
-    "https://www.businessinsider.com/online-activities-to-occupy-kids-during-quarantine-coronavirus-pandemic-2020-4",
-    "https://work.chron.com/list-vocational-careers-14125.html",
-    "https://www.google.com/",
-    "https://www.meetup.com/topics/covid-19/",
-    "https://www.google.com/"
-  ];
-  List<Color> color = [
-    Color(0xFFE44236),
-    Color(0xFF0A79DF),
-    Color(0xFF26ae60),
-    Color(0xFFF3B431),
-    Color(0xFF2C3335),
-    Color(0xFFE74292),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
