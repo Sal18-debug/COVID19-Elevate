@@ -1,7 +1,10 @@
+import 'package:covid19elevate/Bloc/StatsBloc.dart';
+import 'package:covid19elevate/Bloc/StatsEvent.dart';
 import 'package:covid19elevate/Screen/countryStats.dart';
 import 'package:covid19elevate/Screen/globalStats.dart';
 import 'package:covid19elevate/Screen/quiz.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 

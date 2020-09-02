@@ -1,5 +1,6 @@
 import 'package:covid19elevate/Bloc/StatsBloc.dart';
-import 'package:covid19elevate/Screen/login.dart';
+import 'package:covid19elevate/Bloc/userBloc.dart';
+import 'package:covid19elevate/Screen/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
@@ -12,13 +13,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       bloc: StatsBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+      child: BlocProvider(
+        bloc: UserBloc(),
+        child: MaterialApp(
+          title: 'Covid19 Elevate',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: Welcome(),
         ),
-        home: Login(),
       ),
     );
   }

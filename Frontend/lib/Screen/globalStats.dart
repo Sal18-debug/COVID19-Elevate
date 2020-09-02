@@ -67,12 +67,13 @@ class GlobalStats extends StatelessWidget {
                           height: MediaQuery.of(context).size.height / 6,
                           width: 480,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFF83F38),
-                                Colors.black87,
-                              ],
-                            ),
+                            // gradient: LinearGradient(
+                            //   colors: [
+                            //     Color(0xFFF83F38),
+                            //     Colors.black87,
+                            //   ],
+                            // ),
+                            color: Color(0xFFF83F38),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Column(
@@ -109,12 +110,13 @@ class GlobalStats extends StatelessWidget {
                           width: 480,
                           decoration: BoxDecoration(
                             // color: Color(),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFF0278F9),
-                                Colors.black87,
-                              ],
-                            ),
+                            // gradient: LinearGradient(
+                            //   colors: [
+                            //     Color(0xFF0278F9),
+                            //     Colors.black87,
+                            //   ],
+                            // ),
+                            color: Color(0xFF0278F9),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Column(
@@ -155,12 +157,13 @@ class GlobalStats extends StatelessWidget {
                           width: 480,
                           decoration: BoxDecoration(
                             // color: Color(0xFF41A745),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFF41A745),
-                                Colors.black87,
-                              ],
-                            ),
+                            // gradient: LinearGradient(
+                            //   colors: [
+                            //     Color(0xFF41A745),
+                            //     Colors.black87,
+                            //   ],
+                            // ),
+                            color: Color(0xFF41A745),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Column(
@@ -201,12 +204,13 @@ class GlobalStats extends StatelessWidget {
                           width: 480,
                           decoration: BoxDecoration(
                             // color: Color(0xFF6B747C),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFF6B747C),
-                                Colors.black87,
-                              ],
-                            ),
+                            // gradient: LinearGradient(
+                            //   colors: [
+                            //     Color(0xFF6B747C),
+                            //     Colors.black87,
+                            //   ],
+                            // ),
+                            color: Color(0xFF6B747C),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Column(

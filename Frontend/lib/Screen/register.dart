@@ -1,20 +1,21 @@
 import 'package:covid19elevate/Bloc/userBloc.dart';
 import 'package:covid19elevate/Screen/home.dart';
-import 'package:covid19elevate/Screen/register.dart';
+import 'package:covid19elevate/Screen/login.dart';
 import 'package:covid19elevate/Screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
+  TextEditingController _userName = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
-  final loginForm = GlobalKey<FormState>();
+  final registerForm = GlobalKey<FormState>();
   UserBloc _userBloc;
   bool isLoading = false;
 
@@ -54,15 +55,15 @@ class _LoginState extends State<Login> {
             height: 10,
           ),
           TextFormField(
-              controller: controller,
-              obscureText: isPassword,
               validator: (val) {
                 if (val.isEmpty) {
-                  return "It is mandatory";
+                  return "";
                 } else {
                   return null;
                 }
               },
+              controller: controller,
+              obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Color(0xfff3f3f4),
@@ -75,11 +76,13 @@ class _LoginState extends State<Login> {
   Widget _submitButton() {
     return InkWell(
       onTap: () async {
-        if (loginForm.currentState.validate()) {
-          setState(() {
-            isLoading = true;
-          });
-          await _userBloc.loginUser(_email.text, _password.text).then((value) {
+        setState(() {
+          isLoading = true;
+        });
+        if (registerForm.currentState.validate()) {
+          await _userBloc
+              .registerUser(_password.text, _userName.text, _email.text)
+              .then((value) {
             setState(() {
               isLoading = false;
             });
@@ -108,18 +111,18 @@ class _LoginState extends State<Login> {
                 end: Alignment.centerRight,
                 colors: [Color(0xfffbb448), Color(0xfff7892b)])),
         child: Text(
-          'Login',
+          'Register Now',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
     );
   }
 
-  Widget _createAccountLabel() {
+  Widget _loginAccountLabel() {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Register()));
+            context, MaterialPageRoute(builder: (context) => Login()));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -129,14 +132,14 @@ class _LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Don\'t have an account ?',
+              'Already have an account ?',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               width: 10,
             ),
             Text(
-              'Register',
+              'Login',
               style: TextStyle(
                   color: Color(0xfff79c4f),
                   fontSize: 13,
@@ -165,9 +168,10 @@ class _LoginState extends State<Login> {
 
   Widget _emailPasswordWidget() {
     return Form(
-      key: loginForm,
+      key: registerForm,
       child: Column(
         children: <Widget>[
+          _entryField(_userName, "Username"),
           _entryField(_email, "Email id"),
           _entryField(_password, "Password", isPassword: true),
         ],
@@ -180,34 +184,39 @@ class _LoginState extends State<Login> {
     _userBloc = BlocProvider.of<UserBloc>(context);
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-      height: height,
-      child: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : Stack(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: height * .2),
-                        _title(),
-                        SizedBox(height: 50),
-                        _emailPasswordWidget(),
-                        SizedBox(height: 20),
-                        _submitButton(),
-                        SizedBox(height: height * .055),
-                        _createAccountLabel(),
-                      ],
+      body: Container(
+        height: height,
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Stack(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(height: height * .2),
+                          _title(),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          _emailPasswordWidget(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          _submitButton(),
+                          SizedBox(height: height * .14),
+                          _loginAccountLabel(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Positioned(top: 40, left: 0, child: _backButton()),
-              ],
-            ),
-    ));
+                  Positioned(top: 40, left: 0, child: _backButton()),
+                ],
+              ),
+      ),
+    );
   }
 }
