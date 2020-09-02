@@ -9,7 +9,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 
 //Import Routes
 const userRouter = require('./routers/userRouter');
-//const quizeRouter = require('./routers/quizeRouter');
+const quizeRouter = require('./routers/quizeRouter');
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.use(morgan('dev'));
 
 // ROUTES
 app.use('/api/v1/user', userRouter);
-//app.use('/api/v1/quize', quizeRouter);
+app.use('/api/v1/quize', quizeRouter);
 
 //Handling unexpected routes
 app.all('*', (req, res, next) => {
